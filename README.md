@@ -17,5 +17,7 @@ Automated OSPF Tunnel Discovery using Python &amp; Netmiko
 
 ## نمونه خروجی
 Device: 192.168.1.1
+
 OSPF Neighbor: 10.0.0.2 - State: FULL
+
 OSPF Neighbor: 10.0.0.3 - State: FULL
