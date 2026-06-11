@@ -1,14 +1,15 @@
-# cisco-tunnel-finder
-Automated OSPF Tunnel Discovery using Python &amp; Netmiko
-# Cisco Tunnel Finder
+# Cisco OSPF Neighbor Finder
 
-ابزاری برای شناسایی خودکار تونل‌های OSPF
-در شبکه‌های سیسکو با استفاده از Python و Netmiko
+ابزاری برای شناسایی خودکار اینترفیس‌ها و
+همسایه‌های OSPF در شبکه‌های سیسکو
+با استفاده از Python و Netmiko
 
 ## مشکلی که حل می‌کند
 - شناسایی تمام OSPF neighbors به صورت خودکار
-- نمایش وضعیت تونل‌ها بدون دسترسی دستی
-- گزارش سریع برای عیب‌یابی شبکه
+- نمایش Neighbor ID و IP Address هر session
+- تشخیص نقش هر دستگاه در OSPF (DR/BDR)
+- پشتیبانی از چند دستگاه همزمان
+- بدون نیاز به دسترسی دستی به هر دستگاه
 
 ## ابزارها
 - Python 3
@@ -17,7 +18,33 @@ Automated OSPF Tunnel Discovery using Python &amp; Netmiko
 
 ## نمونه خروجی
 Device: 192.168.1.1
+==================================================
+OSPF Neighbors in FULL state:
+--------------------------------------------------
+Neighbor ID : 10.10.23.1
+Address     : 10.10.12.2
+State       : FULL/BDR
+Interface   : FastEthernet0/1
+--------------------------------------------------
 
-OSPF Neighbor: 10.0.0.2 - State: FULL
+Device: 192.168.1.2
+==================================================
+OSPF Neighbors in FULL state:
+--------------------------------------------------
+Neighbor ID : 10.10.23.2
+Address     : 10.10.23.2
+State       : FULL/DR
+Interface   : FastEthernet0/1
+--------------------------------------------------
+Neighbor ID : 10.10.12.1
+Address     : 10.10.12.1
+State       : FULL/DR
+Interface   : FastEthernet0/0
+--------------------------------------------------
 
-OSPF Neighbor: 10.0.0.3 - State: FULL
+## کاربرد
+مناسب برای شبکه‌هایی که:
+- مستندات OSPF ندارند
+- نیاز به بررسی سریع وضعیت routing دارند
+- چندین روتر باید همزمان بررسی شوند
+- عیب‌یابی از راه دور انجام می‌شود
